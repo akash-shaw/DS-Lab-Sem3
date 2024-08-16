@@ -77,7 +77,14 @@ void displaySP(struct sparse_matrix *sparse_matrix){
 }
 
 void fastTransposeSP(struct sparse_matrix *sparse_matrix){
-
+    int temp;
+    for (int i = 1; i <= sparse_matrix->sm[2][0]; i++)
+    {
+        temp = sparse_matrix->sm[0][i];
+        sparse_matrix->sm[0][i] = sparse_matrix->sm[1][i];
+        sparse_matrix->sm[1][i] = temp;
+    }
+    printf("Sparse Matrix transposed");
 }
 
 
@@ -88,6 +95,7 @@ int main(){
     initSP(&sparse_matrix);
     insertSP(&sparse_matrix);
     displaySP(&sparse_matrix);
-
+    fastTransposeSP(&sparse_matrix);
+    displaySP(&sparse_matrix);
     return 0;
 }
